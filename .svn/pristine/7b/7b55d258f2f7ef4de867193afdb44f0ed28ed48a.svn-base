@@ -1,0 +1,65 @@
+package dao;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.ibatis.SqlMapClientTemplate;
+import org.springframework.stereotype.Repository;
+
+import dto.TestDTO;
+import dto.supportRegDTO;
+
+@Repository("msgdao")
+public class TestDAOImpl implements TestDAO {
+	@Autowired
+	private SqlMapClientTemplate template;
+
+	public List msg_list() {
+		List<TestDTO> msglist = template.queryForList("test_selectall");
+		System.out.println("msglist===>"+msglist.size());
+		return msglist;
+	}
+	
+	public void msg_insert(TestDTO dto){
+		template.insert("test_insert", dto);
+	}
+
+	public List getMsgList() {
+		System.out.println("---getMsgList---");
+		List<TestDTO> msglist_all = template.queryForList("msg_List");
+		//System.out.println("msglist_all===>"+ msglist_all.size());
+		System.out.println("** "+msglist_all);
+		return  msglist_all;
+	}
+
+	public List getMyMsgList(String userNum) {
+		System.out.println("---getMyMsgList--- ::"+userNum);
+		List<supportRegDTO> myMsglist  = template.queryForList("msg_myList", userNum);
+		System.out.println("** "+myMsglist);
+		return myMsglist;
+	}
+
+	@Override
+	public void msg_delete(int msg_num) {
+		template.delete("msg_delete", msg_num);
+	}
+
+	@Override
+	public int count() {
+		int count=(Integer)template.queryForObject("msg_count");
+		return count;
+	}
+
+	@Override
+	public int userCount(int user_num) {
+		int userCount=(Integer)template.queryForObject("msg_userCount", user_num);
+		return userCount;
+	}
+
+	@Override
+	public List<TestDTO> userSelect(int user_num) {
+		List<TestDTO> msglist=template.queryForList("msg_Userselect", user_num);
+		return msglist;
+	}
+	
+}

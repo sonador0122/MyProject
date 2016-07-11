@@ -1,0 +1,61 @@
+package dao;
+
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import dto.VideoDTO;
+
+@Repository("videodao")
+public class VideoDAOImpl implements VideoDAO {
+	@Autowired
+	private SqlSession sqlSession;
+
+	@Override
+	public void insert() {
+		// TODO Auto-generated method stub
+	}
+
+	public void insert(VideoDTO video) {
+		sqlSession.insert("edenMapper.video_insert", video);
+	}
+
+	@Override
+	public List<VideoDTO> getVideoList() {
+		System.out.println("---getVideoList---");
+		List<VideoDTO> videoList = sqlSession
+				.selectList("edenMapper.vdo_selectAll");
+		System.out.println(videoList);
+		return videoList;
+	}
+
+	public void update(VideoDTO video) {
+		sqlSession.update("edenMapper.video_update", video);
+
+	}
+
+	public void delete(String titles) {
+		sqlSession.delete("edenMapper.video_delete", titles);
+	}
+
+	@Override
+	public VideoDTO select(String video_no) {
+		VideoDTO select = (VideoDTO) sqlSession.selectOne(
+				"edenMapper.video_select", video_no);
+		return select;
+	}
+
+	@Override
+	public void setState(String[] param) {
+		System.out.println("---setState(vdo)---");
+		for (String vdoNo : param) { // 배열의 내용을 출력할 때 향상된 for문으로 간단하게 출력
+			System.out.println("**delet_svdoNo : " + vdoNo);
+			sqlSession.delete("edenMapper.svideo_delete", vdoNo);
+		}
+	  
+		
+	}
+
+}

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="adminMapper">
+
+	<select id="totalcount" resultType="int">
+		select count(user_num) from member
+	</select>
+
+	<select id="facebookcount" resultType="int">
+		select count(user_num) from member where snstype = 'f'
+	</select>
+
+	<select id="twittercount" resultType="int">
+		select count(user_num) from member where snstype = 't'
+	</select>
+
+	<select id="usercount" resultType="int">
+		select count(c.user_num) from connectt c, member m where m.user_num =
+		c.user_num and snstype='u'
+	</select>
+
+	<!-- 페이스북 연동한 아이디에 관련된 Query -->
+
+	<select id="searchmember" resultType="String">
+		select user_num from member where userid = #{userid}
+	</select>
+
+	<insert id="insertmember" parameterType="addto">
+		insert into member values(seq_member.nextval, #{snstype}, #{userid},
+		#{username}, #{password} , #{img} , #{email} , #{cp} , #{contury},
+		to_char(sysdate, 'yy/mm/dd'))
+	</insert>
+
+	<!-- 일일 방문자 검출 Query -->
+
+	<insert id="insertvisits" parameterType="String">
+		insert into connectt values(seq_connect.nextval, #{user_num},
+		to_char(sysdate, 'yy/mm/dd'))
+	</insert>
+
+	<select id="visitssearch" resultType="String">
+		select connect_num from connectt where user_num = #{user_num} and connectdate
+		= to_char(sysdate, 'yy/mm/dd')
+	</select>
+
+	<!-- sns별 일일 방문자 count -->
+
+	<select id="facebooktoday" resultType="visdto">
+		select * from (select c.connectdate, count(c.user_num) sns_user_count from
+		connectt c, member m where m.user_num = c.user_num and m.snstype = 'f'
+		group by c.connectdate order by c.connectdate desc) where rownum
+		between 1 and 8 order by connectdate desc
+	</select>
+
+	<select id="twittertoday" resultType="visdto">
+		select * from (select c.connectdate, count(c.user_num) sns_user_count from
+		connectt c, member m where m.user_num = c.user_num and m.snstype = 't'
+		group by c.connectdate order by c.connectdate desc) where rownum
+		between 1 and 8 order by connectdate desc
+	</select>
+
+	<select id="usertoday" resultType="visdto">
+		select * from (select c.connectdate, count(c.user_num) sns_user_count from
+		connectt c, member m where m.user_num = c.user_num and m.snstype = 'u'
+		group by c.connectdate order by c.connectdate desc) where rownum
+		between 1 and 8 order by connectdate desc
+	</select>
+
+	<!-- 월별 방문자 count -->
+
+	<select id="user_monthlycount" resultType="visdto">
+		select count(*) user_monthly_count, to_char(connectdate,'yy-mm')
+		monthconnectdate from connectt group by to_char(connectdate,'yy-mm')
+		order by to_char(connectdate,'yy-mm') asc
+	</select>
+
+	<!-- 최근 메세지 -->
+	<select id="recent_message" resultType="msgdto">
+		select msg_num, msg_name, msg_email, msg_content from msg where rownum
+		between 1 and 3 order by msg_num desc
+	</select>
+
+	<!-- 새로운 가족 -->
+	<select id="recent_member" resultType="addto">
+		select hiredate, username, snstype, email from member where rownum between 1
+		and 3 order by user_num desc
+	</select>
+
+	<!-- 회원 목록 -->
+	<select id="member_list" resultType="addto">
+		select * from member order by hiredate desc
+	</select>
+
+	<!-- 회원삭제 -->
+	<delete id="delete_member" parameterType="String">
+		delete from member where user_num = #{user_num}
+	</delete>
+
+	<!-- 후원 랭킹 순위 -->
+	<select id="support_rank" resultType="supdto">
+		select * from (select name, sum(amount) sumamount from supportinfo group by
+		name order by sumamount desc) where rownum between 1 and 3
+	</select>
+
+	<!-- 관리자 로그인 -->
+	<select id="admin_login" parameterType="addto" resultType="String">
+		select userid from member where userid=#{userid} and
+		password=#{password}
+	</select>
+
+	<!-- 마이페이지 아이디찾기 -->
+	<select id="search_userid" parameterType="int" resultType="addto">
+		select userid,img,hiredate from member where user_num=#{user_num}
+	</select>
+</mapper>

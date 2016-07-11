@@ -1,0 +1,221 @@
+/* move special fonts to HTML head for better performance */
+@import url('http://fonts.googleapis.com/css?family=Open+Sans:200,300,400,600,700');
+
+
+/* custom template */
+html, body {
+   height: 100%;
+   font-family: 'Open Sans',arial,sans-serif;
+  
+}
+
+a {
+  color:#222222;
+}
+
+.wrapper, .row {
+   height: 100%;
+   margin-left:0;
+   margin-right:0;	
+}
+
+.wrapper:before, .wrapper:after,
+.column:before, .column:after {
+    content: "";
+    display: table;
+}
+
+.wrapper:after,
+.column:after {
+    clear: both;
+}
+
+.column {
+    height: 100%;
+    overflow: auto;
+    *zoom:1;
+}
+
+.column .padding {
+    padding: 20px;
+}
+
+.box {
+  	bottom: 0; /* increase for footer use */
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-image:url('/assets/example/bg_suburb.jpg');
+    background-size:cover;
+    background-attachment:fixed;
+}
+
+.divider {
+	margin-top:0px;
+}
+
+
+/* center and adjust the sidebar contents on smaller devices */
+@media (max-width: 768px) {
+  #sidebar,#sidebar a.logo {
+    text-align:center;
+    margin:0 auto;
+    margin-top:30px;
+    font-size:26px;
+    background-color:#333846;
+  }
+  #sidebar a.logo {
+    font-size:50px;
+    height:75px;
+    width:75px;
+    margin-bottom:30px;
+  }
+}
+#main {
+    background-color:#fefefe;
+}
+#main .img-circle { 
+  margin-top:10px;
+  height:50px;
+  width:50px;
+}
+#sidebar{
+	background-color:#333846;
+    color:#ffffff;
+
+	
+}
+
+/*888*/
+#sidebar a {
+	color:white;
+    background-color:transparent;
+	text-shadow:1px 0 1px #888888;
+}
+
+
+#sidebar a:hover {
+	/*background-image: url("http://i.imgur.com/y4SNdbV.jpg");*/
+	color:#ffffff;
+    background-color:transparent;
+	text-shadow:1px 0 1px #888888;
+}
+
+
+
+
+
+#sidebar a.logo {
+
+  background-image: url("http://i.imgur.com/y4SNdbV.jpg");
+  display:block;
+  padding:5px;
+  background-color:#fff;
+  color:#777777;
+  height:50px;
+  width:200px;
+  margin-top:100px;
+  font-size:28px;
+  font-weight:700;
+  text-align:center;
+  text-decoration:none;
+  text-shadow:0 0 0;
+}
+
+
+
+
+#sidebar-footer {
+  position:absolute;bottom:5px;
+  text-align:center;
+ 
+}
+#footer {
+  margin-bottom:20px;
+  text-align:center;
+ 
+}
+
+
+
+
+
+/* bootstrap overrides */
+
+h1,h2,h3 {
+   font-weight:800;
+   font-family:'Open Sans',arial,sans-serif;
+}
+
+.jumbotron {
+  background-color:transparent;
+}
+.label-default {
+  background-color:#dddddd;
+ 
+}
+.page-header {
+  margin-top: 55px;
+  padding-top: 9px;
+  border-top:1px solid #eeeeee;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:2px;
+}
+
+.col-sm-9.full {
+    width: 100%;
+}
+
+
+small.text-muted {
+  font-family:'나눔고딕 Light',courier,courier-new,monospace;
+  
+  
+}
+
+
+
+
+
+
+/* USER CSS : rbfl */ 
+/* 클래스는 .을 이용하여 정의하고 아이디는 #을 이용하여 정의합니다. 
+
+li.login{background-position: 0 -444px; width: 24px; height: 80px;}
+
+
+
+*/
+ul.nav {
+	font-family:'나눔고딕 ExtraBold';
+}
+
+#header ul {
+		float:right;
+	list-style:none;
+    margin:0;
+    padding:0;
+}
+
+
+#header li {
+  	margin: 10px;
+    padding: 0 0 0 0;
+    border : 0;
+    float: left;   
+}
+
+li.login{background:url(http://i.imgur.com/mNMpqt2.png);display:block;background-position: 0 0; width: 28px; height: 28px;  }
+li.credit{background:url(http://i.imgur.com/Nm1qC7j.png);display:block;background-position: 0 0; width: 24px; height: 24px;  }
+li.contact{background:url(http://i.imgur.com/Nm1qC7j.png);display:block;background-position: 0 -102px; width: 24px; height: 24px }
+li.admin{background:url(http://i.imgur.com/mNMpqt2.png);display:block;background-position: 0 -38px; width: 28px; height: 28px;  }
+
+
+p{
+	line-height: 200%;
+	
+}
+
+

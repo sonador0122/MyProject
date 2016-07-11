@@ -1,0 +1,54 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+
+<link rel="stylesheet" media="all"
+	href="/Test/common/css/map2/jquery-jvectormap.css" />
+<script src="/Test/common/js/map2/jquery-1.8.2.js"></script>
+<script src="/Test/common/js/map2/jquery-jvectormap.js"></script>
+<script src="/Test/common/js/map2/jquery-mousewheel.js"></script>
+
+<script src="/Test/common/js/map2/jvectormap.js"></script>
+
+<script src="/Test/common/js/map2/abstract-element.js"></script>
+<script src="/Test/common/js/map2/abstract-canvas-element.js"></script>
+<script src="/Test/common/js/map2/abstract-shape-element.js"></script>
+
+<script src="/Test/common/js/map2/svg-element.js"></script>
+<script src="/Test/common/js/map2/svg-group-element.js"></script>
+<script src="/Test/common/js/map2/svg-canvas-element.js"></script>
+<script src="/Test/common/js/map2/svg-shape-element.js"></script>
+<script src="/Test/common/js/map2/svg-path-element.js"></script>
+<script src="/Test/common/js/map2/svg-circle-element.js"></script>
+
+<script src="/Test/common/js/map2/vml-element.js"></script>
+<script src="/Test/common/js/map2/vml-group-element.js"></script>
+<script src="/Test/common/js/map2/vml-canvas-element.js"></script>
+<script src="/Test/common/js/map2/vml-shape-element.js"></script>
+<script src="/Test/common/js/map2/vml-path-element.js"></script>
+<script src="/Test/common/js/map2/vml-circle-element.js"></script>
+
+<script src="/Test/common/js/map2/vector-canvas.js"></script>
+<script src="/Test/common/js/map2/simple-scale.js"></script>
+<script src="/Test/common/js/map2/numeric-scale.js"></script>
+<script src="/Test/common/js/map2/ordinal-scale.js"></script>
+<script src="/Test/common/js/map2/color-scale.js"></script>
+<script src="/Test/common/js/map2/data-series.js"></script>
+<script src="/Test/common/js/map2/proj.js"></script>
+<script src="/Test/common/js/map2/world-map.js"></script>
+
+<script src="/Test/common/js/map2/jquery-jvectormap-world-mill-en.js"></script>
+<script>
+
+</script>
+
+<title>Insert title here</title>
+</head>
+<body>
+
+  <div class="map" style="width: 800px; height: 500px"></div>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="eden2Mapper">
+
+	<!-- where -->
+	<select id="animals3" parameterType="String" resultType="animals">
+		select *
+		from ANIMALS where
+		Class_names like #{Class_names}
+	</select>
+	<!-- where test end -->
+
+	<!--test -->
+	<select id="animals4" parameterType="String" resultType="animals">
+		select *
+		from ANIMALS where
+		Common_names = #{Common_names}
+	</select>
+
+	<!-- map2 -->
+	<select id="animals2" parameterType="String" resultType="animals">
+		select *
+		from ANIMALS where
+		Class_names like #{Class_names}
+	</select>
+	<!-- map2 test end -->
+
+	<select id="animals" parameterType="String" resultType="animals">
+		select
+		*
+		from ANIMALS where
+		ISO_Codes like #{ISO_Codes}
+	</select>
+
+
+</mapper>

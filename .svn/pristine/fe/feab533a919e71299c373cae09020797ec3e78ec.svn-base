@@ -1,0 +1,12 @@
+package dao;
+
+import java.util.List;
+
+import dto.FreeboardDTO;
+
+
+public interface FreeboardDAO {
+	public List<FreeboardDTO> free_list();
+	public FreeboardDTO free_view(int free_no);
+	public void free_insert(FreeboardDTO free);
+}

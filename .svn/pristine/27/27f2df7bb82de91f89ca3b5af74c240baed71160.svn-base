@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap>
+	<typeAlias alias="member" type="dto.MemberDTO" />
+	<insert id="member_insert" parameterClass="member">
+		insert into member
+		values(seq_member.nextval,
+		#snstype#,#userid#,#username#,null,#img#,null,null,null,to_char(sysdate, 'yy/mm/dd'))
+	</insert>
+	<select id="member_select" resultClass="member">
+		select * from member
+	</select>
+	<select id="member_search" parameterClass="String" resultClass="member">
+		select * from member where username=#username# and email=#email# and
+		cp=#cp#
+	</select>
+	<select id="member_user_num" parameterClass="member" resultClass="int">
+		select user_num from member where snstype=#snstype# and userid=#userid#
+	</select>
+	<select id="member_userid" parameterClass="String" resultClass="String">
+		select userid from member where userid=#userid#
+	</select>
+</sqlMap>

@@ -1,0 +1,40 @@
+package dao;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.ibatis.SqlMapClientTemplate;
+import org.springframework.stereotype.Repository;
+
+import dto.MemberDTO;
+import dto.MemberDTO;
+@Repository("member")
+public class MemberDAOImpl implements MemberDAO {
+
+	@Autowired
+	private SqlMapClientTemplate template;
+
+	@Override
+	public void member_insert(MemberDTO user) {
+		template.insert("member_insert", user);	
+		System.out.println("twitter member insertµé¾î¿È.");
+	}
+
+	@Override
+	public List<MemberDTO> member_select() {
+		List<MemberDTO> memberlist = template.queryForList("member_select");
+		return memberlist;
+	}
+
+	@Override
+	public int member_user_num(MemberDTO user) {
+		int user_num=(Integer)template.queryForObject("member_user_num", user);
+		return user_num;
+	}
+	
+	public String member_userid(String id){
+		String userid=(String)template.queryForObject("member_userid", id);
+		return userid;
+	}
+	
+}

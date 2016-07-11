@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="BadWordsDTO" type="dto.BadWordsDTO" />
+	<select id="badwords_select" parameterClass="String" resultClass="String">
+		select word from badwords where word like '%$word$%'
+	</select>
+	<select id="badwords_search" parameterClass="String" resultClass="String">
+		select word from badwords where word=#word#
+	</select>
+	<select id="badwords_selectAll" resultClass="String">
+		select word from badwords
+	</select>
+	<insert id="badwords_insert" parameterClass="BadWordsDTO">
+		insert into badwords values(seq_badwords.nextval,#word#)
+	</insert>
+	<select id="badwords_selectRealAll" resultClass="BadWordsDTO">
+		select * from badwords
+	</select>
+	<delete id="badwords_delete" parameterClass="int">
+		delete from badwords where num=#num#
+	</delete>
+	<select id="badwords_count" resultClass="int">
+		select count(*) from badwords
+	</select>
+</sqlMap>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="badwordsMapper">
+	<select id="badwords_select" parameterType="String" resultType="String">
+		select word from badwords where word like #{word}
+	</select>
+	<select id="badwords_search" parameterType="String" resultType="String">
+		select word from badwords where word=#{word}
+	</select>
+	<select id="badwords_selectAll" resultType="String">
+		select word from
+		badwords
+	</select>
+	<insert id="badwords_insert" parameterType="BadWordsDTO">
+		insert into badwords
+		values(seq_badwords.nextval,#{word})
+	</insert>
+	<select id="badwords_selectRealAll" resultType="BadWordsDTO">
+		select * from
+		badwords
+	</select>
+	<delete id="badwords_delete" parameterType="int">
+		delete from badwords
+		where num=#{num}
+	</delete>
+	<select id="badwords_count" resultType="int">
+		select count(*) from
+		badwords
+	</select>
+</mapper>

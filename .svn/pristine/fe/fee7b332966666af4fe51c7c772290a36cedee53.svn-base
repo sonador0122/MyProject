@@ -1,0 +1,56 @@
+package dao;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.orm.ibatis.SqlMapClientTemplate;
+import org.springframework.stereotype.Repository;
+
+import dto.AnimalsDTO;
+
+@Repository("animalsdao")
+public class AnimalsDAOImpl implements AnimalsDAO {
+	@Autowired  //<=여기만 추가해주면 다른건 안 건들여도 됨.
+	
+	private SqlMapClientTemplate template;
+	//설정 파일에 등록된 JdbcTemplate객체를 주입받도록 설정
+	/*public MemberDAOImpl(JdbcTemplate template) {
+		super();
+		this.template = template;
+	}
+	*/
+
+	
+	public List<AnimalsDTO> getAnimalsList(String ISO_Codes) {
+		List<AnimalsDTO> animals=template.queryForList("animals",ISO_Codes);
+		return animals;
+	}
+
+
+
+	@Override
+	public List<AnimalsDTO> getAnimalsList2(String Class_names) {
+		List<AnimalsDTO> animals=template.queryForList("animals2",Class_names);
+		return animals;
+	}
+
+	// 분포도 뭐야그..... animal3로 
+	public List<AnimalsDTO> getAnimalsList3(String Class_names) {
+		List<AnimalsDTO> animals=template.queryForList("animals3",Class_names);
+		return animals;
+	}
+
+
+
+	@Override
+	public AnimalsDTO getAnimalsList4(String Common_names) {
+		
+		AnimalsDTO animal = (AnimalsDTO)template.queryForObject("animals4",Common_names);
+		System.out.println("DAO에서"+animal.getCommon_names());
+		return animal;
+	}
+}
+
+

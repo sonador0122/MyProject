@@ -1,0 +1,61 @@
+package dao;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.ibatis.SqlMapClientTemplate;
+import org.springframework.stereotype.Repository;
+
+import dto.BadWordsDTO;
+
+@Repository("badwordsdao")
+public class BadWordsDAOImpl implements BadWordsDAO {
+	@Autowired
+	private SqlMapClientTemplate template;
+
+
+	public List<String> select(String word) {
+		System.out.println("들어는 왔니? 욕DB");
+		List<String> badword = template.queryForList("badwords_select", word);
+		return badword;
+	}
+
+
+	public void insert(BadWordsDTO dto) {
+		template.insert("badwords_insert", dto);
+	}
+
+
+	public void delete(int num) {
+		template.delete("badwords_delete", num);
+	}
+
+
+	@Override
+	public List<String> selectAll() {
+		List<String> str=template.queryForList("badwords_selectAll");
+		return str;
+	}
+
+
+	@Override
+	public List<BadWordsDTO> selectRealAll() {
+		List<BadWordsDTO> wordlist=template.queryForList("badwords_selectRealAll");
+		return wordlist;
+	}
+
+
+	@Override
+	public String search(String word) {
+		String searchword=(String)template.queryForObject("badwords_search",word);
+		return searchword;
+	}
+
+
+	@Override
+	public int count() {
+		int count=(Integer)template.queryForObject("badwords_count");
+		return count;
+	}
+
+}

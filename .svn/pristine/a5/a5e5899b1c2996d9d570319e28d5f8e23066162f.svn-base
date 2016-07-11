@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<!-- admin.xml -->
+		<typeAlias alias="addto" type="dto.AdminMemberDTO" />
+		<typeAlias alias="visdto" type="dto.ConnectManageDTO" />
+		<typeAlias alias="msgdto" type="dto.TestDTO" />
+		<typeAlias alias="supdto" type="dto.supportRegDTO" />
+		<!-- badwords.xml -->
+		<typeAlias alias="BadWordsDTO" type="dto.BadWordsDTO" />
+		<!-- eden.xml -->
+		<typeAlias alias="spt" type="dto.supportRegDTO" /><!-- 중복내용 -->
+		<typeAlias alias="video" type="dto.VideoDTO" />
+		<typeAlias alias="events" type="dto.EventsDTO" />
+		<!-- eden2.xml -->
+		<typeAlias alias="animals" type="dto.AnimalsDTO" />
+		<!-- member.xml -->
+		<typeAlias alias="member" type="dto.MemberDTO" />
+		<!-- msg.xml -->
+		<typeAlias alias="test_dto" type="dto.TestDTO" /><!-- 중복내용 -->
+	</typeAliases>
+	
+	<mappers>
+		<mapper resource="ibatisConfig/adminMapper.xml" />
+		<mapper resource="ibatisConfig/badwordsMapper.xml" />
+		<mapper resource="ibatisConfig/edenMapper.xml" />
+		<mapper resource="ibatisConfig/eden2Mapper.xml" />
+		<mapper resource="ibatisConfig/memberMapper.xml" />
+		<mapper resource="ibatisConfig/msgMapper.xml" />
+	</mappers>
+
+</configuration>

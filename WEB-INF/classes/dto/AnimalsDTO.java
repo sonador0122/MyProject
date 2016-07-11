@@ -1,0 +1,106 @@
+package dto;
+
+import java.sql.Date;
+
+public class AnimalsDTO{
+	String Class_names;
+	String Common_names;
+	String Family;
+	String Authority;
+	String Red_List_status;
+	String ISO_Codes; 
+    String URLS ;
+	
+	public AnimalsDTO(){
+		 
+	 }
+
+	public AnimalsDTO(String common_names, String iSO_Codes) {
+		super();
+		Common_names = common_names;
+		ISO_Codes = iSO_Codes;
+	}
+
+
+
+
+	public AnimalsDTO(String class_names, String common_names, String family,
+			String authority, String red_List_status, String iSO_Codes,
+			String uRLS) {
+		super();
+		Class_names = class_names;
+		Common_names = common_names;
+		Family = family;
+		Authority = authority;
+		Red_List_status = red_List_status;
+		ISO_Codes = iSO_Codes;
+		URLS = uRLS;
+	}
+
+	@Override
+	public String toString() {
+		return "AnimalsDTO [Class_names=" + Class_names + ", Common_names="
+				+ Common_names + ", Family=" + Family + ", Authority="
+				+ Authority + ", Red_List_status=" + Red_List_status
+				+ ", ISO_Codes=" + ISO_Codes + ", URLS=" + URLS + "]";
+	}
+
+	public String getClass_names() {
+		return Class_names;
+	}
+
+	public void setClass_names(String class_names) {
+		Class_names = class_names;
+	}
+
+	public String getCommon_names() {
+		return Common_names;
+	}
+
+	public void setCommon_names(String common_names) {
+		Common_names = common_names;
+	}
+
+	public String getFamily() {
+		return Family;
+	}
+
+	public void setFamily(String family) {
+		Family = family;
+	}
+
+	public String getAuthority() {
+		return Authority;
+	}
+
+	public void setAuthority(String authority) {
+		Authority = authority;
+	}
+
+	public String getRed_List_status() {
+		return Red_List_status;
+	}
+
+	public void setRed_List_status(String red_List_status) {
+		Red_List_status = red_List_status;
+	}
+
+	public String getISO_Codes() {
+		return ISO_Codes;
+	}
+
+	public void setISO_Codes(String iSO_Codes) {
+		ISO_Codes = iSO_Codes;
+	}
+
+	public String getURLS() {
+		return URLS;
+	}
+
+	public void setURLS(String uRLS) {
+		URLS = uRLS;
+	}
+
+	
+	
+}

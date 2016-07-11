@@ -1,0 +1,156 @@
+package dto;
+
+import org.springframework.web.multipart.MultipartFile;
+
+public class FreeboardDTO {
+	private int free_no;
+	private String username;
+	private String free_title;
+	private String free_content;
+	private MultipartFile free_uploadfile;
+	private String free_filename;
+	private int free_filesize;
+	private String free_hiredate;
+	private int free_count;
+
+	public FreeboardDTO() {
+		super();
+	}
+
+public FreeboardDTO(int free_no, String username, String free_title,
+			String free_content, MultipartFile free_uploadfile, String free_filename, int free_filesize,
+			String free_hiredate, int free_count) {
+		super();
+		this.free_no = free_no;
+		this.username = username;
+		this.free_title = free_title;
+		this.free_content = free_content;
+		this.free_uploadfile = free_uploadfile;
+		this.free_filename = free_filename;
+		this.free_filesize = free_filesize;
+		this.free_hiredate = free_hiredate;
+		this.free_count = free_count;
+	}
+
+/*	public FreeboardDTO(int free_no, String username, String free_title,
+			String free_content, MultipartFile free_uploadfile,
+			String free_filename, int free_filesize, String free_hiredate,
+			int free_count) {
+		super();
+		this.free_no = free_no;
+		this.username = username;
+		this.free_title = free_title;
+		this.free_content = free_content;
+		this.free_filename = free_filename;
+		this.free_uploadfile = free_uploadfile;
+		this.free_filesize = free_filesize;
+		this.free_hiredate = free_hiredate;
+		this.free_count = free_count;
+	}*/
+
+	public FreeboardDTO(int free_no, String username, String free_title,
+			String free_hiredate, int free_count) {
+		super();
+		this.free_no = free_no;
+		this.username = username;
+		this.free_title = free_title;
+		this.free_hiredate = free_hiredate;
+		this.free_count = free_count;
+	}
+
+/*	public FreeboardDTO(String username, String free_title,
+			String free_content, MultipartFile free_uploadfile,
+			int free_filesize, String free_hiredate, int free_count) {
+		super();
+		this.username = username;
+		this.free_title = free_title;
+		this.free_content = free_content;
+		this.free_uploadfile = free_uploadfile;
+		this.free_filesize = free_filesize;
+		this.free_hiredate = free_hiredate;
+		this.free_count = free_count;
+	}*/
+
+	public int getFree_no() {
+		return free_no;
+	}
+
+	public FreeboardDTO(String username, String free_title, String free_content,
+		MultipartFile free_uploadfile, int free_filesize) {
+	super();
+	this.username = username;
+	this.free_title = free_title;
+	this.free_content = free_content;
+	this.free_uploadfile = free_uploadfile;
+	this.free_filesize = free_filesize;
+}
+
+	public void setFree_no(int free_no) {
+		this.free_no = free_no;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getFree_title() {
+		return free_title;
+	}
+
+	public void setFree_title(String free_title) {
+		this.free_title = free_title;
+	}
+
+	public String getFree_content() {
+		return free_content;
+	}
+
+	public void setFree_content(String free_content) {
+		this.free_content = free_content;
+	}
+
+	public MultipartFile getFree_uploadfile() {
+		return free_uploadfile;
+	}
+
+	public void setFree_uploadfile(MultipartFile free_uploadfile) {
+		this.free_uploadfile = free_uploadfile;
+	}
+
+	public String getFree_filename() {
+		return free_filename;
+	}
+
+	public void setFree_filename(String free_filename) {
+		this.free_filename = free_filename;
+	}
+
+	public int getFree_filesize() {
+		return free_filesize;
+	}
+
+	public void setFree_filesize(int free_filesize) {
+		this.free_filesize = free_filesize;
+	}
+
+	public String getFree_hiredate() {
+		return free_hiredate;
+	}
+
+	public void setFree_hiredate(String free_hiredate) {
+		this.free_hiredate = free_hiredate;
+	}
+
+	public int getFree_count() {
+		return free_count;
+	}
+
+	public void setFree_count(int free_count) {
+		this.free_count = free_count;
+	}
+
+}

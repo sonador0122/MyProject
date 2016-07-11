@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+
+<sqlMap>
+	<typeAlias alias="spt" type="dto.supportRegDTO"/>
+	
+<typeAlias alias="spt" type="dto.supportRegDTO"/>
+	<insert id="spt_insert"  parameterClass="spt">
+		insert into supportInfo values(to_char(sysdate,'YYMMDD:HH24MI')||'_'||to_char(sptCode_seq.NEXTVAL), #email#, #supportType#, #paymentType#, #bankName#, #accountNum#, #name#, #amount#, sysdate, #state#, #user_num#)
+		<!-- INSERT INTO supportInfo VALUES(to_char(sysdate,'YYMMDD:HH24MI')||'_'||to_char(sptCode_seq.NEXTVAL), 'email3@email.com', 'st', 'pt', 'TEST은행', '계좌번호', '이름', '1000', sysdate, );   -->
+	</insert>
+	<select id="spt_selectAll" resultClass="spt">
+    	select * from supportInfo
+    </select>
+		<select id="spt_mySptList" parameterClass="String" resultClass="spt">
+		select * from supportInfo where user_num=#userNum# 
+		<!-- select * from supportInfo where user_num=#userNum# -->
+	</select>
+	
+	<!-- 후원자이름 클라우드태그로 뽑기 위한 쿼리문 -->
+	<select id="spt_username" resultClass="String">
+		select DISTINCT name from supportInfo
+	</select>
+	
+	<!-- 마이페이지 개인별 후원금액 출력-->
+	<select id="spt_amount" parameterClass="int" resultClass="int">
+		select sum(amount) from supportInfo where user_num=#user_num#
+	</select>
+	
+	<!-- 마이페이지 개인별 후원횟수 출력 -->
+	<select id="spt_count" parameterClass="int" resultClass="int">
+		select count(user_num) from supportInfo where user_num=#user_num#
+	</select>
+	
+	<update id="spt_updateState" parameterClass="String">
+		update supportInfo set state ='입금' where supportCode=#supportCode#
+	</update>
+
+	<delete id="spt_deleteInfo" parameterClass="String">
+		delete from supportInfo where supportCode=#supportCode#
+	</delete>
+
+	 <!--  어드민 후원  -->
+	 <!-- 전체 총액 -->
+	<select id="spt_selectTotalAmount" resultClass="int">
+    	select sum(amount) totalAmount from supportInfo where state='입금'
+    </select>
+    <!-- 어제 총액 -->
+	<select id="spt_yesterdayAmount" resultClass="int">
+    	select sum(amount) from supportInfo where infoDate between to_date(sysdate-1,'yy/mm/dd') and to_date(sysdate,'yy/mm/dd') and state='입금'
+    </select>
+    <!-- 이번주 총액 -->
+	<select id="spt_weekAmount" resultClass="string">
+    	select sum(amount) from supportInfo where infoDate between to_date(sysdate-7,'yy/mm/dd') and to_date(sysdate,'yy/mm/dd') and state='입금'
+    </select>
+    
+    
+	 <!-- 오늘 후원정보 -->
+	<select id="spt_todayInfo" resultClass="spt">
+    	select * from supportInfo where infodate like sysdate
+    </select>	
+    
+    <!-- 로그인 타입별 후원액  -->
+    <select id="spt_LoginAmount" resultClass="int">
+    select sum(amount) from SUPPORTINFO s, member m where s.user_num=m.user_num and m.snstype=#test#
+    </select>	
+    
+    <!--  분기 총액 -->
+	<select id="spt_QuarterAmount" resultClass="int">
+	select sum(amount) from supportInfo where infoDate between to_date(#startParam#,'yy/mm/dd') and to_date(#endParam#,'yy/mm/dd')	
+ 	</select>
+	
+	
+	
+    <!--  최다 후원 월 -->
+	<select id="spt_monthlyMax" resultClass="spt">
+	select mydate,maxval
+		from ( select to_char(infoDate, 'yy/mm') mydate, sum(amount) maxval
+				from supportInfo
+				where (infoDate between to_date('2014-01-01', 'yy/mm/dd') and to_date('2014-12-31', 'yy/mm/dd'))
+				group by to_char(infoDate, 'yy/mm')
+				order by maxval desc)
+		where rownum=1
+	</select>
+
+
+<typeAlias alias="video" type="dto.VideoDTO" />
+	<insert id="video_insert" parameterClass="video">
+	insert into video values(to_char(sysdate,'YYYY')||'-'||to_char(vdo_seq.NEXTVAL),'admin',#titles#,#video_urls#)
+	</insert>
+	
+	<select id="vdo_selectAll" resultClass="video">
+		select * from video
+	</select>
+	
+	 <select id="video_select" parameterClass="String" resultClass="video">
+	 select * from video where video_no=#video_no# 
+	 </select>
+	
+	<update id="video_update">
+		update VIDEO set titles=#titles#, video_urls=#video_urls#
+		where video_no=#video_no#
+
+	</update>
+	<delete id="video_delete">
+		delete from VIDEO where titles=#titles#
+	</delete>
+
+
+
+
+
+
+	<typeAlias alias="events" type="dto.EventsDTO" />
+	<insert id="events_insert" parameterClass="events">
+		insert into events
+		values(to_char(sysdate,'YYYY')||'-'||to_char(evt_seq.NEXTVAL),'admin',#title#,#contents#,#pic_urls#, #evtDate#, #siteUrl#)
+	</insert>
+
+	<select id="events" resultClass="events">
+		select * from events
+	</select>
+	
+	<select id="events_select" parameterClass="String" resultClass="events">
+	 select * from events where events_no=#events_no#
+	</select>
+	
+	<update id="events_update" >
+       	update events set title=#title#, contents=#contents#, pic_urls=#pic_urls#
+       	where events_no=#events_no#
+	
+	</update>
+	<delete id="events_delete" >
+	   delete from events where events_no=#events_no#
+	
+	</delete>
+
+</sqlMap>
+
+
+

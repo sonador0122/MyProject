@@ -1,0 +1,89 @@
+package main;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
+
+import dao.FreeboardDAO;
+import dto.FreeboardDTO;
+
+@Controller
+public class FreeboardController {
+	
+	@Autowired
+	private FileUploadService service;
+	
+	@Qualifier("freedao")
+	FreeboardDAO dao;
+	
+	@RequestMapping("/free_List.do")
+	public ModelAndView free_list(){
+		System.out.println("controller 들어오는군???");
+		ModelAndView mav = new ModelAndView();
+		List<FreeboardDTO> freelist = dao.free_list();
+		System.out.println("컨트롤에서 freeboard list==>"+freelist.size());
+		mav.addObject("freelist",freelist);
+		mav.setViewName("free/list");
+		return mav;
+		
+	}
+	
+	@RequestMapping("/free_view.do")
+	public ModelAndView free_view(HttpServletRequest request, @RequestParam("free_no") int free_no){
+		System.out.println("free_view Controller");
+		ModelAndView mav = new ModelAndView();
+		FreeboardDTO freeview = dao.free_view(free_no);
+		mav.addObject("free",freeview);
+		mav.setViewName("free/view");
+		return mav;
+		
+	}
+	@RequestMapping(method=RequestMethod.GET, value="/free_insert_form.do")
+	public ModelAndView free_insert_form(){
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("free/insert");
+		return mav;
+	}
+	
+	@RequestMapping(method=RequestMethod.POST, value="/free_insert.do")
+	public ModelAndView free_insert(HttpServletRequest request, @ModelAttribute("free") FreeboardDTO free) throws Exception{
+		MultipartFile uploadfile = free.getFree_uploadfile();
+		ModelAndView mav = new ModelAndView();
+		/*String path = WebUtils.getRealPath(request.getSession().getServletContext(),"/upload");
+		System.out.println("업로드될 파일의 경로==>"+ path);
+		String fileName = file.getOriginalFilename();
+		int filesize = (int)file.getSize();
+		service.upload(file, path, fileName);
+		free.setFree_filesize(filesize);
+		dao.free_insert(free);
+		mav.setViewName("free/list");
+		*/
+		
+		if(uploadfile!=null){
+			String fileName = uploadfile.getOriginalFilename();
+			free.setFree_filename(fileName);
+			try{
+				File file = new File("C:/upload/" + fileName);
+				uploadfile.transferTo(file);
+				
+			}catch(IOException e){
+				e.printStackTrace();
+			}
+		}
+		dao.free_insert(free);
+		return mav;
+	}
+	
+}

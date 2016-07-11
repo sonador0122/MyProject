@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="freeboard">
+
+	<select id="free_select" resultType="free_dto">
+		select free_no, username, free_title, free_hiredate, free_count 
+		from freeboard
+	</select>
+	<select id="free_view" parameterType="int" resultType="free_dto">
+		select username, free_title, free_content,free_filename, free_hiredate, free_count
+		from freeboard
+	</select>
+	<insert id="free_insert" parameterType="free_dto">
+	insert into freeboard 
+	values(sql_free.nextval, #{username}#,#{free_title}#,
+	#{free_content}#, #{free_filename}#,#{free_filesize}#, 
+	to_char(sysdate, 'yy/mm/dd'),#{free_count}#)
+	</insert>
+</mapper>

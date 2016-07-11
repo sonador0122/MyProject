@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+	
+	<!-- 메인 템플릿 -->
+	<definition name="index" template="/index.jsp">
+	</definition>
+	<definition name="mainTemplate" template="/WEB-INF/temp/mainTemplate.jsp">
+		<put-attribute name="header" value="/WEB-INF/temp/header.jsp"></put-attribute>
+		<put-attribute name="sidebar" value="/WEB-INF/temp/sidebar.jsp"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/temp/content.jsp"></put-attribute>
+	</definition>
+
+	<definition name="msg/list" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/msg/draggable.jsp" />
+	</definition>
+	<definition name="msg/insert" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/msg/draggable_insert.jsp" />
+	</definition>
+
+	<definition name="twitter" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/msg/twitter.jsp" />
+	</definition>
+
+
+
+	<!-- 어드민가기 위한 로그인페이지 -->
+	<definition name="admin/login" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/page/adminlogin.jsp" />
+	</definition>
+
+	<!-- 어드민 템플릿 -->
+	<definition name="adminTemplate" template="/WEB-INF/admin/adminTemplate.jsp">
+		<put-attribute name="admin/header" value="/WEB-INF/admin/header.jsp"></put-attribute>
+		<put-attribute name="admin/sidebar" value="/WEB-INF/admin/sidebar.jsp"></put-attribute>
+		<put-attribute name="admin/content" value="/WEB-INF/admin/content.jsp"></put-attribute>
+	</definition>
+	<definition name="admin/index" extends="adminTemplate">
+	</definition>
+
+	<!-- admin -->
+	<definition name="admin/member" extends="adminTemplate">
+		<put-attribute name="admin/content" value="/WEB-INF/adminpage/stats.jsp" />
+	</definition>
+
+	<definition name="admin/visits" extends="adminTemplate">
+		<put-attribute name="admin/content"
+			value="/WEB-INF/adminpage/visitprobablity.jsp" />
+	</definition>
+
+
+	<definition name="myPage" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/page/myPage.jsp" />
+	</definition>
+	<!--비속어 등록-->
+	<definition name="admin/badword" extends="adminTemplate">
+		<put-attribute name="admin/content" value="/WEB-INF/page/msg_Badword.jsp"/>
+	</definition>
+
+
+
+	<!-- 화면 템플릿 -->
+	<!-- 6. 한걸음더 : 후원기능 -->
+	<definition name="support" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/page/support.jsp" />
+	</definition>
+
+	<definition name="sptResult" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/page/supportResult.jsp" />
+	</definition>
+	
+	
+	<definition name="sptDo2" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/page/support2.jsp" />
+	</definition>
+	
+	
+	<definition name="sptResult11" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/page/supportResult11.jsp" />
+	</definition>
+	
+
+
+	<!-- 0. 어드민 : 메세지 -->
+	<definition name="admin/msgAdmin" extends="adminTemplate">
+		<put-attribute name="admin/content" value="/WEB-INF/page/msg_Admin.jsp" />
+	</definition>
+
+	<!-- 0. 어드민 : 후원 -->
+	<definition name="sptList" extends="adminTemplate">
+		<put-attribute name="admin/content" value="/WEB-INF/page/supportList.jsp" />
+	</definition>
+	<definition name="sptStats" extends="adminTemplate">
+		<put-attribute name="admin/content" value="/WEB-INF/page/supportStats.jsp" />
+	</definition>
+
+
+	<!-- 0. 어드민 : 비디오 -->
+	<definition name="admin/vdoAdmin" extends="adminTemplate">
+		<put-attribute name="admin/content" value="/WEB-INF/page/video_Admin.jsp" />
+	</definition>
+
+
+	<!-- 0. 어드민 : 행사 -->
+	<definition name="admin/evtAdmin" extends="adminTemplate">
+		<put-attribute name="admin/content" value="/WEB-INF/page/events_Admin.jsp" />
+	</definition>
+	
+	
+
+
+
+
+
+
+	<!-- 1.멸종동물 DB -->
+	<definition name="animals" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/page/animals.jsp" />
+	</definition>
+
+	 <!--분포도에 쓰일 것 -->
+	<definition name="animals2" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/page/animals3.jsp" />
+	</definition>
+	<!-- 5. 행사 안내 -->
+	<definition name="events_register" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/page/events_register.jsp" />
+	</definition>
+
+	<definition name="events_insertview" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/page/events_register.jsp" />
+	</definition>
+
+	<definition name="events_view" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/page/events_view.jsp" />
+	</definition>
+
+	<definition name="events_update" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/page/events_update.jsp" />
+	</definition>
+
+	<definition name="events_updateview" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/page/events_update.jsp" />
+	</definition>
+
+	<!-- 5. 비디오 -->
+	<definition name="video_register" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/page/video_register.jsp" />
+	</definition>
+
+	<definition name="video_insertview" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/page/video_register.jsp" />
+	</definition>
+
+	<definition name="video_view" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/page/video_view.jsp" />
+	</definition>
+
+	<definition name="video_update" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/page/video_update.jsp" />
+	</definition>
+
+	<definition name="video_updateview" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/page/video_update.jsp" />
+	</definition>
+
+	<!-- 0. HEADER : 대시보드 -->
+	<definition name="dashboard/index" extends="mainTemplate">
+		<put-attribute name="header" value="/WEB-INF/page/support.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/page/support.jsp" />
+		<put-attribute name="content" value="/WEB-INF/page/support.jsp" />
+
+	</definition>
+	<!-- about -->
+	<definition name="about" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/page/about.jsp" />
+	</definition>
+	<definition name="aboutK" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/page/aboutK.jsp"/>
+	</definition>
+
+	<!-- Mapcontroller에서 map이란 name값을 mainTemplate를 상속받아 content 부분에 animap.jsp를 
+		설정 -->
+	<definition name="map" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/page/animap.jsp" />
+	</definition>
+
+
+	<!-- map 분포도 찍기 -->
+	<definition name="map2" extends="mainTemplate">
+													<!-- animap2.jsp -->
+		<put-attribute name="content" value="/WEB-INF/page/animap3.jsp" />
+	</definition>
+
+
+	<!-- 분포도 우리가 원하는 -->
+	<definition name="animallist33" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/page/animals2.jsp" />
+	</definition>
+	<!-- <definition name="map3" extends="mainTemplate"> <put-attribute name="content" 
+		value="/WEB-INF/page/animap3.jsp" /> </definition> -->
+
+
+</tiles-definitions>
+
+
+
+
+
+
+
+
+
+
+

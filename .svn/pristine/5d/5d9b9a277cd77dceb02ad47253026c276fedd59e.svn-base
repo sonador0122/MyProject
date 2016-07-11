@@ -1,0 +1,39 @@
+package dao;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import dto.FreeboardDTO;
+
+@Repository("freedao")
+public class FreeboardDAOImpl implements FreeboardDAO {
+	@Autowired
+	private SqlSession sqlSession;
+	
+	@Override
+	public List<FreeboardDTO> free_list() {
+		System.out.println("들어는 오냐?");
+		List<FreeboardDTO> freelist = sqlSession.selectList("freeboard.free_select");
+		System.out.println("freeboard list ==>"+freelist.size());
+		return freelist;
+	}
+
+	@Override
+	public FreeboardDTO free_view(int free_no) {
+		System.out.println("free_view");
+		FreeboardDTO freeview = (FreeboardDTO)sqlSession.selectOne("freeboard.free_view",free_no);
+		return freeview;
+	}
+
+	@Override
+	public void free_insert(FreeboardDTO free) {
+		sqlSession.insert("freeboard.free_insert",free);
+	}
+
+}

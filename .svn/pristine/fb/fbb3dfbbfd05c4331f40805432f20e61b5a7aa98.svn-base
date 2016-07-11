@@ -1,0 +1,36 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="free_insert_form.do">
+		<table border="1" width="900" style="width: 95; margin: 20px">
+			<tr>
+				<th>번호</th>
+				<th>제목</th>
+				<th>작성자</th>
+				<th>등록일</th>
+				<th>조회수</th>
+			</tr>
+			<c:forEach var="free" items="${freelist}">
+
+				<tr>
+					<td>NO.${free.free_no}</td>
+					<td><a href="free_view.do?free_no=${free.free_no}">${free.free_title}</a></td>
+					<td>${free.userid}</td>
+					<td>${free.free_hiredate}</td>
+					<td>${free.free_count}</td>
+				</tr>
+			</c:forEach>
+			<tr>
+				<td colspan="5"><input type="submit" value="등록"></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

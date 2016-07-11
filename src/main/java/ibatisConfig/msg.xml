@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+	<typeAlias alias="test_dto" type="dto.TestDTO" />
+	<select id="test_selectall" resultClass="test_dto">
+		select e.msg_num, m.username,m.email,e.msg_name, e.msg_email, e.msg_content from member m, msg e where m.user_num=e.user_num order by e.msg_num
+	</select>
+	<insert id="test_insert" parameterClass="test_dto">
+		insert into msg values(seq_msg.nextval, #user_num#, #msg_content#,#msg_name#,#msg_email#)
+	</insert>
+	<select id="msg_List" resultClass="test_dto">
+		select * from msg
+	</select>
+	
+	<select id="msg_myList" parameterClass="String" resultClass="test_dto">
+		select * from msg where user_num=#userNum# 
+	</select>
+	<delete id="msg_delete" parameterClass="int">
+		delete from msg where msg_num=#msg_num#
+	</delete>
+	<select id="msg_count" resultClass="int">
+		select count(*) from msg
+	</select>
+	<select id="msg_userCount" parameterClass="int" resultClass="int">
+		select count(*) from msg where user_num=#user_num#
+	</select>
+	<select id="msg_Userselect" parameterClass="int" resultClass="test_dto">
+		select msg_num,msg_content from msg where user_num=#user_num#
+	</select>
+</sqlMap>
