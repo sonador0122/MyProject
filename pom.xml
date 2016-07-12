@@ -151,4 +151,19 @@
 	<build>
 		<finalName>Eden</finalName>
 	</build>
+	<reporting>
+
+		<plugins>
+     			<plugin>
+        		   <groupId>org.codehaus.mojo</groupId>
+        		   <artifactId>findbugs-maven-plugin</artifactId>
+        		   <version>4.65</version>
+        		   <configuration>
+        		      <findbugsXmlOutput>true</findbugsXmlOutput>
+        		      <findbugsXmlWithMessages>true</findbugsXmlWithMessages>
+        		      <xmlOutput>true</xmlOutput>
+        		   </configuration>
+        		</plugin>
+   		</plugins>
+	</reporting>
 </project>
